@@ -1,77 +1,74 @@
 # PetController Class
 
-This class is a controller that handles requests related to pets in a pet clinic application.
+This class is a controller that handles requests related to pets in the Pet Clinic application.
 
 ## Methods
 
-### getAllPets
+### `showPetList()`
 
-This method retrieves all pets belonging to an owner.
+This method handles GET requests to display a list of pets for a specific owner.
 
-#### Parameters
-- `ownerId` - The ID of the owner whose pets are to be retrieved.
+- **Parameters:** None
+- **Returns:** A `String` representing the view name for displaying the list of pets.
 
-#### Returns
-- A list of pets belonging to the specified owner.
+### `initCreationForm()`
 
-```java
-@GetMapping("/owners/{ownerId}/pets")
-public List<Pet> getAllPets(@PathVariable int ownerId) {
-    // Method implementation
-}
-```
+This method handles GET requests to display a form for adding a new pet.
 
-### addPet
+- **Parameters:** `Model model` - the model to be used for the view
+- **Returns:** A `String` representing the view name for the pet creation form.
 
-This method adds a new pet to an owner.
+### `processCreationForm()`
 
-#### Parameters
-- `ownerId` - The ID of the owner to whom the pet will be added.
-- `pet` - The pet object to be added.
+This method handles POST requests to add a new pet to the database.
 
-#### Returns
-- The added pet object.
+- **Parameters:**
+  - `Pet pet` - the pet object to be added
+  - `BindingResult result` - the result of the binding process
+- **Returns:** A `String` representing the view name for the pet details page.
 
-```java
-@PostMapping("/owners/{ownerId}/pets")
-public Pet addPet(@PathVariable int ownerId, @RequestBody Pet pet) {
-    // Method implementation
-}
-```
+### `initUpdateForm()`
 
-### updatePet
+This method handles GET requests to display a form for updating an existing pet.
 
-This method updates an existing pet belonging to an owner.
+- **Parameters:**
+  - `int petId` - the ID of the pet to be updated
+  - `Model model` - the model to be used for the view
+- **Returns:** A `String` representing the view name for the pet update form.
 
-#### Parameters
-- `ownerId` - The ID of the owner to whom the pet belongs.
-- `petId` - The ID of the pet to be updated.
-- `updatedPet` - The updated pet object.
+### `processUpdateForm()`
 
-#### Returns
-- The updated pet object.
+This method handles POST requests to update an existing pet in the database.
 
-```java
-@PutMapping("/owners/{ownerId}/pets/{petId}")
-public Pet updatePet(@PathVariable int ownerId, @PathVariable int petId, @RequestBody Pet updatedPet) {
-    // Method implementation
-}
-```
+- **Parameters:**
+  - `Pet pet` - the updated pet object
+  - `BindingResult result` - the result of the binding process
+  - `int ownerId` - the ID of the owner of the pet
+- **Returns:** A `String` representing the view name for the pet details page after the update.
 
-### deletePet
+### `showPet()`
 
-This method deletes a pet belonging to an owner.
+This method handles GET requests to display the details of a specific pet.
 
-#### Parameters
-- `ownerId` - The ID of the owner to whom the pet belongs.
-- `petId` - The ID of the pet to be deleted.
+- **Parameters:**
+  - `int petId` - the ID of the pet to be displayed
+  - `Model model` - the model to be used for the view
+- **Returns:** A `String` representing the view name for displaying the pet details.
 
-#### Returns
-- None
+### `processFindForm()`
 
-```java
-@DeleteMapping("/owners/{ownerId}/pets/{petId}")
-public void deletePet(@PathVariable int ownerId, @PathVariable int petId) {
-    // Method implementation
-}
-```
+This method handles POST requests to find pets by their name or type.
+
+- **Parameters:**
+  - `Pet pet` - the pet object containing search criteria
+  - `BindingResult result` - the result of the binding process
+  - `Model model` - the model to be used for the view
+- **Returns:** A `String` representing the view name for displaying the search results.
+
+### `populatePetTypes()`
+
+This method populates the model with a list of pet types for selection in forms.
+
+- **Parameters:**
+  - `Model model` - the model to be populated with pet types
+- **Returns:** None
