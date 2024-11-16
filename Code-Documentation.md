@@ -1,54 +1,96 @@
 # PetController Class
 
-This class represents a controller for handling requests related to pets in a pet clinic application.
+This class is a controller that handles requests related to pets in the Pet Clinic application.
 
 ## Methods
 
-### getAllPets
+### `showPetList()`
 
-This method retrieves all pets belonging to a specific owner.
+This method handles GET requests to display a list of pets for a specific owner.
 
-#### Parameters
-- `ownerId` (int): The ID of the owner whose pets are to be retrieved.
+- **HTTP Method:** GET
+- **Request Mapping:** `/owners/{ownerId}/pets`
+- **Returns:** A `ModelAndView` object containing the view name `pets/petList`
 
-#### Returns
-- `List<Pet>`: A list of pets belonging to the specified owner.
+### `initCreationForm()`
 
-```java
-public List<Pet> getAllPets(int ownerId) {
-    // Method implementation
-}
-```
+This method handles GET requests to display a form for adding a new pet to an owner.
 
-### getPetDetails
+- **HTTP Method:** GET
+- **Request Mapping:** `/owners/{ownerId}/pets/new`
+- **Returns:** A `ModelAndView` object containing the view name `pets/createOrUpdatePetForm`
 
-This method retrieves details of a specific pet.
+### `processCreationForm()`
 
-#### Parameters
-- `petId` (int): The ID of the pet whose details are to be retrieved.
+This method handles POST requests to process the form submission for adding a new pet to an owner.
 
-#### Returns
-- `Pet`: The pet object containing details of the specified pet.
+- **HTTP Method:** POST
+- **Request Mapping:** `/owners/{ownerId}/pets/new`
+- **Parameters:**
+  - `@Valid`: Indicates that the `Pet` object should be validated
+  - `BindingResult`: Holds the results of the validation and binding
+- **Returns:** A `String` representing the view name to redirect to
 
-```java
-public Pet getPetDetails(int petId) {
-    // Method implementation
-}
-```
+### `initUpdateForm()`
 
-### addNewPet
+This method handles GET requests to display a form for updating an existing pet.
 
-This method adds a new pet for a specific owner.
+- **HTTP Method:** GET
+- **Request Mapping:** `/owners/{ownerId}/pets/{petId}/edit`
+- **Parameters:**
+  - `@PathVariable("petId") int petId`: The ID of the pet to be updated
+- **Returns:** A `ModelAndView` object containing the view name `pets/createOrUpdatePetForm`
 
-#### Parameters
-- `ownerId` (int): The ID of the owner to whom the new pet belongs.
-- `pet` (Pet): The pet object to be added.
+### `processUpdateForm()`
 
-#### Returns
-- `Pet`: The newly added pet object.
+This method handles POST requests to process the form submission for updating an existing pet.
 
-```java
-public Pet addNewPet(int ownerId, Pet pet) {
-    // Method implementation
-}
-```
+- **HTTP Method:** POST
+- **Request Mapping:** `/owners/{ownerId}/pets/{petId}/edit`
+- **Parameters:**
+  - `@Valid`: Indicates that the `Pet` object should be validated
+  - `BindingResult`: Holds the results of the validation and binding
+- **Returns:** A `String` representing the view name to redirect to
+
+### `showPet()`
+
+This method handles GET requests to display details of a specific pet.
+
+- **HTTP Method:** GET
+- **Request Mapping:** `/owners/{ownerId}/pets/{petId}`
+- **Parameters:**
+  - `@PathVariable("petId") int petId`: The ID of the pet to display
+- **Returns:** A `ModelAndView` object containing the view name `pets/petDetails`
+
+### `populatePetTypes()`
+
+This method populates the model with a list of pet types for use in forms.
+
+- **Returns:** A `Collection<String>` containing the pet types
+
+### `findOwner()`
+
+This method finds the owner with the given ID.
+
+- **Parameters:**
+  - `@PathVariable("ownerId") int ownerId`: The ID of the owner to find
+- **Returns:** An `Owner` object representing the owner with the given ID
+
+### `initBinder()`
+
+This method customizes data binding for web data.
+
+- **Parameters:**
+  - `WebDataBinder dataBinder`: The data binder to customize
+
+## Dependencies
+
+- `Pet`: Represents a pet in the Pet Clinic application
+- `Owner`: Represents an owner in the Pet Clinic application
+- `ModelAndView`: Represents a model and view object in Spring Framework
+- `BindingResult`: Holds the results of the validation and binding
+- `Collection<String>`: Represents a collection of strings
+
+## Usage
+
+This class is used to handle requests related to pets in the Pet Clinic application.
