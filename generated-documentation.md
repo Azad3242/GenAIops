@@ -1,71 +1,74 @@
 # PetController Class
 
-The `PetController` class is responsible for handling HTTP requests related to pets in the PetClinic application.
+This class is a controller for handling HTTP requests related to pets in a pet clinic application.
 
 ## Methods
 
-### `initCreationForm(Model model)`
+### getAllPets
 
-This method initializes the creation form for a new pet.
+This method handles the HTTP GET request to retrieve all pets belonging to an owner.
 
-- **Parameters:**
-  - `model`: The model object to be populated with data.
+#### Parameters
+- **ownerId** (int): The ID of the owner whose pets are to be retrieved.
 
-- **Returns:** None
+#### Returns
+- A list of `Pet` objects belonging to the specified owner.
 
 ```java
-public String initCreationForm(Model model) {
+@GetMapping("/owners/{ownerId}/pets")
+public List<Pet> getAllPets(@PathVariable int ownerId) {
     // Method implementation
 }
 ```
 
-### `processCreationForm(@Valid Pet pet, BindingResult result, Model model)`
+### addPet
 
-This method processes the form submission for creating a new pet.
+This method handles the HTTP POST request to add a new pet for an owner.
 
-- **Parameters:**
-  - `pet`: The pet object to be validated.
-  - `result`: The binding result of the validation.
-  - `model`: The model object to be populated with data.
+#### Parameters
+- **ownerId** (int): The ID of the owner for whom the pet is being added.
+- **pet** (`Pet`): The details of the pet being added.
 
-- **Returns:** A string representing the view name.
+#### Returns
+- The newly added `Pet` object.
 
 ```java
-public String processCreationForm(@Valid Pet pet, BindingResult result, Model model) {
+@PostMapping("/owners/{ownerId}/pets")
+public Pet addPet(@PathVariable int ownerId, @RequestBody Pet pet) {
     // Method implementation
 }
 ```
 
-### `initUpdateForm(@PathVariable("petId") int petId, Model model)`
+### updatePet
 
-This method initializes the update form for an existing pet.
+This method handles the HTTP PUT request to update an existing pet's details.
 
-- **Parameters:**
-  - `petId`: The ID of the pet to be updated.
-  - `model`: The model object to be populated with data.
+#### Parameters
+- **ownerId** (int): The ID of the owner to whom the pet belongs.
+- **petId** (int): The ID of the pet to be updated.
+- **updatedPet** (`Pet`): The updated details of the pet.
 
-- **Returns:** A string representing the view name.
+#### Returns
+- The updated `Pet` object.
 
 ```java
-public String initUpdateForm(@PathVariable("petId") int petId, Model model) {
+@PutMapping("/owners/{ownerId}/pets/{petId}")
+public Pet updatePet(@PathVariable int ownerId, @PathVariable int petId, @RequestBody Pet updatedPet) {
     // Method implementation
 }
 ```
 
-### `processUpdateForm(@Valid Pet pet, BindingResult result, Owner owner, Model model)`
+### deletePet
 
-This method processes the form submission for updating an existing pet.
+This method handles the HTTP DELETE request to remove a pet from an owner's list of pets.
 
-- **Parameters:**
-  - `pet`: The pet object to be validated and updated.
-  - `result`: The binding result of the validation.
-  - `owner`: The owner object to which the pet belongs.
-  - `model`: The model object to be populated with data.
-
-- **Returns:** A string representing the view name.
+#### Parameters
+- **ownerId** (int): The ID of the owner from whom the pet is to be deleted.
+- **petId** (int): The ID of the pet to be deleted.
 
 ```java
-public String processUpdateForm(@Valid Pet pet, BindingResult result, Owner owner, Model model) {
+@DeleteMapping("/owners/{ownerId}/pets/{petId}")
+public void deletePet(@PathVariable int ownerId, @PathVariable int petId) {
     // Method implementation
 }
 ```
