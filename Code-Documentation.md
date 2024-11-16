@@ -1,74 +1,54 @@
 # PetController Class
 
-This class is a controller that handles requests related to pets in the Pet Clinic application.
+This class represents a controller for handling requests related to pets in a pet clinic application.
 
 ## Methods
 
-### `showPetList()`
+### getAllPets
 
-This method handles GET requests to display a list of pets for a specific owner.
+This method retrieves all pets belonging to a specific owner.
 
-- **Parameters:** None
-- **Returns:** A `String` representing the view name for displaying the list of pets.
+#### Parameters
+- `ownerId` (int): The ID of the owner whose pets are to be retrieved.
 
-### `initCreationForm()`
+#### Returns
+- `List<Pet>`: A list of pets belonging to the specified owner.
 
-This method handles GET requests to display a form for adding a new pet.
+```java
+public List<Pet> getAllPets(int ownerId) {
+    // Method implementation
+}
+```
 
-- **Parameters:** `Model model` - the model to be used for the view
-- **Returns:** A `String` representing the view name for the pet creation form.
+### getPetDetails
 
-### `processCreationForm()`
+This method retrieves details of a specific pet.
 
-This method handles POST requests to add a new pet to the database.
+#### Parameters
+- `petId` (int): The ID of the pet whose details are to be retrieved.
 
-- **Parameters:**
-  - `Pet pet` - the pet object to be added
-  - `BindingResult result` - the result of the binding process
-- **Returns:** A `String` representing the view name for the pet details page.
+#### Returns
+- `Pet`: The pet object containing details of the specified pet.
 
-### `initUpdateForm()`
+```java
+public Pet getPetDetails(int petId) {
+    // Method implementation
+}
+```
 
-This method handles GET requests to display a form for updating an existing pet.
+### addNewPet
 
-- **Parameters:**
-  - `int petId` - the ID of the pet to be updated
-  - `Model model` - the model to be used for the view
-- **Returns:** A `String` representing the view name for the pet update form.
+This method adds a new pet for a specific owner.
 
-### `processUpdateForm()`
+#### Parameters
+- `ownerId` (int): The ID of the owner to whom the new pet belongs.
+- `pet` (Pet): The pet object to be added.
 
-This method handles POST requests to update an existing pet in the database.
+#### Returns
+- `Pet`: The newly added pet object.
 
-- **Parameters:**
-  - `Pet pet` - the updated pet object
-  - `BindingResult result` - the result of the binding process
-  - `int ownerId` - the ID of the owner of the pet
-- **Returns:** A `String` representing the view name for the pet details page after the update.
-
-### `showPet()`
-
-This method handles GET requests to display the details of a specific pet.
-
-- **Parameters:**
-  - `int petId` - the ID of the pet to be displayed
-  - `Model model` - the model to be used for the view
-- **Returns:** A `String` representing the view name for displaying the pet details.
-
-### `processFindForm()`
-
-This method handles POST requests to find pets by their name or type.
-
-- **Parameters:**
-  - `Pet pet` - the pet object containing search criteria
-  - `BindingResult result` - the result of the binding process
-  - `Model model` - the model to be used for the view
-- **Returns:** A `String` representing the view name for displaying the search results.
-
-### `populatePetTypes()`
-
-This method populates the model with a list of pet types for selection in forms.
-
-- **Parameters:**
-  - `Model model` - the model to be populated with pet types
-- **Returns:** None
+```java
+public Pet addNewPet(int ownerId, Pet pet) {
+    // Method implementation
+}
+```
