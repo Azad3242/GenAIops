@@ -1,79 +1,68 @@
 # PetController Class
 
-This class is responsible for handling HTTP requests related to pets in the Pet Clinic application.
+This class is a controller responsible for handling requests related to pets in a pet clinic application.
 
 ## Methods
 
 ### getAllPets
 
-```java
-/**
-* Retrieves a list of all pets for a specific owner.
-* @param ownerId The ID of the owner whose pets are to be retrieved.
-* @return A list of pets belonging to the specified owner.
-*/
-@GetMapping("/owners/{ownerId}/pets")
-public List<Pet> getAllPets(@PathVariable int ownerId) {
-    // Method implementation
-}
-```
+This method retrieves all pets belonging to a specific owner.
 
-### getPetDetails
+#### Parameters
+- `ownerId` (int): The ID of the owner whose pets are to be retrieved.
+
+#### Returns
+- `List<Pet>`: A list of pets belonging to the specified owner.
 
 ```java
-/**
-* Retrieves details of a specific pet.
-* @param ownerId The ID of the owner who owns the pet.
-* @param petId The ID of the pet to retrieve details for.
-* @return Details of the specified pet.
-*/
-@GetMapping("/owners/{ownerId}/pets/{petId}")
-public Pet getPetDetails(@PathVariable int ownerId, @PathVariable int petId) {
+public List<Pet> getAllPets(int ownerId) {
     // Method implementation
 }
 ```
 
 ### addNewPet
 
+This method adds a new pet to the database for a specific owner.
+
+#### Parameters
+- `ownerId` (int): The ID of the owner to whom the new pet belongs.
+- `pet` (Pet): The pet object to be added.
+
+#### Returns
+- `Pet`: The newly added pet object.
+
 ```java
-/**
-* Adds a new pet for a specific owner.
-* @param ownerId The ID of the owner to whom the pet belongs.
-* @param pet The details of the new pet to be added.
-* @return The newly added pet.
-*/
-@PostMapping("/owners/{ownerId}/pets")
-public Pet addNewPet(@PathVariable int ownerId, @RequestBody Pet pet) {
+public Pet addNewPet(int ownerId, Pet pet) {
     // Method implementation
 }
 ```
 
 ### updatePetDetails
 
+This method updates the details of an existing pet.
+
+#### Parameters
+- `petId` (int): The ID of the pet to be updated.
+- `updatedPet` (Pet): The updated pet object.
+
+#### Returns
+- `Pet`: The updated pet object.
+
 ```java
-/**
-* Updates the details of a specific pet.
-* @param ownerId The ID of the owner who owns the pet.
-* @param petId The ID of the pet to update.
-* @param updatedPet The updated details of the pet.
-* @return The updated pet details.
-*/
-@PutMapping("/owners/{ownerId}/pets/{petId}")
-public Pet updatePetDetails(@PathVariable int ownerId, @PathVariable int petId, @RequestBody Pet updatedPet) {
+public Pet updatePetDetails(int petId, Pet updatedPet) {
     // Method implementation
 }
 ```
 
 ### deletePet
 
+This method deletes a pet from the database.
+
+#### Parameters
+- `petId` (int): The ID of the pet to be deleted.
+
 ```java
-/**
-* Deletes a specific pet.
-* @param ownerId The ID of the owner who owns the pet.
-* @param petId The ID of the pet to delete.
-*/
-@DeleteMapping("/owners/{ownerId}/pets/{petId}")
-public void deletePet(@PathVariable int ownerId, @PathVariable int petId) {
+public void deletePet(int petId) {
     // Method implementation
 }
 ```
