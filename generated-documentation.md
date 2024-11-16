@@ -1,72 +1,99 @@
 # PetController Class
 
-This class is a controller for handling HTTP requests related to pets in the PetClinic application.
+This class is a controller for handling requests related to pets in a pet clinic application.
+
+## Attributes
+
+- `petService`: An instance of the `PetService` class used for interacting with pet data.
 
 ## Methods
 
-### getAllPets
+### `setPetService(PetService petService)`
 
-This method retrieves all pets for a specific owner.
+Sets the `petService` attribute of the class.
 
-#### Parameters
-- `ownerId` (int): The ID of the owner whose pets are to be retrieved.
+- **Parameters**
+  - `petService`: An instance of the `PetService` class.
 
-#### Returns
-- `List<Pet>`: A list of pets belonging to the specified owner.
+- **Return Type**
+  - `void`
 
-```java
-public List<Pet> getAllPets(int ownerId) {
-    // Method implementation
-}
-```
+### `initCreationForm(ModelMap model)`
 
-### addNewPet
+Initializes the creation form for adding a new pet.
 
-This method adds a new pet for a specific owner.
+- **Parameters**
+  - `model`: An instance of `ModelMap` used to pass data to the view.
 
-#### Parameters
-- `ownerId` (int): The ID of the owner to whom the new pet belongs.
-- `pet` (Pet): The pet object to be added.
+- **Return Type**
+  - `String`
 
-#### Returns
-- `Pet`: The newly added pet object.
+### `processCreationForm(@Valid Pet pet, BindingResult result, ModelMap model)`
 
-```java
-public Pet addNewPet(int ownerId, Pet pet) {
-    // Method implementation
-}
-```
+Processes the form submission for adding a new pet.
 
-### updatePetDetails
+- **Parameters**
+  - `pet`: A `Pet` object to be added.
+  - `result`: An instance of `BindingResult` for validation.
+  - `model`: An instance of `ModelMap` used to pass data to the view.
 
-This method updates the details of an existing pet.
+- **Return Type**
+  - `String`
 
-#### Parameters
-- `petId` (int): The ID of the pet to be updated.
-- `updatedPet` (Pet): The updated pet object.
+### `initUpdateForm(@PathVariable("petId") int petId, ModelMap model)`
 
-#### Returns
-- `Pet`: The updated pet object.
+Initializes the update form for editing an existing pet.
 
-```java
-public Pet updatePetDetails(int petId, Pet updatedPet) {
-    // Method implementation
-}
-```
+- **Parameters**
+  - `petId`: The ID of the pet to be updated.
+  - `model`: An instance of `ModelMap` used to pass data to the view.
 
-### deletePet
+- **Return Type**
+  - `String`
 
-This method deletes a pet belonging to a specific owner.
+### `processUpdateForm(@Valid Pet pet, BindingResult result, Owner owner, ModelMap model)`
 
-#### Parameters
-- `ownerId` (int): The ID of the owner whose pet is to be deleted.
-- `petId` (int): The ID of the pet to be deleted.
+Processes the form submission for updating an existing pet.
 
-#### Returns
-- `String`: A message indicating the success or failure of the deletion operation.
+- **Parameters**
+  - `pet`: A `Pet` object to be updated.
+  - `result`: An instance of `BindingResult` for validation.
+  - `owner`: The owner of the pet.
+  - `model`: An instance of `ModelMap` used to pass data to the view.
 
-```java
-public String deletePet(int ownerId, int petId) {
-    // Method implementation
-}
-```
+- **Return Type**
+  - `String`
+
+### `findOwner(@PathVariable("ownerId") int ownerId)`
+
+Finds the owner of a pet based on the owner's ID.
+
+- **Parameters**
+  - `ownerId`: The ID of the owner.
+
+- **Return Type**
+  - `Owner`
+
+### `populatePetTypes()`
+
+Populates the list of available pet types.
+
+- **Return Type**
+  - `Collection<PetType>`
+
+### `findPetTypes()`
+
+Finds all available pet types.
+
+- **Return Type**
+  - `Collection<PetType>`
+
+### `findPet(@PathVariable("petId") int petId)`
+
+Finds a pet based on the pet's ID.
+
+- **Parameters**
+  - `petId`: The ID of the pet.
+
+- **Return Type**
+  - `Pet`
