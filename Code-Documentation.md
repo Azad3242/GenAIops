@@ -1,96 +1,68 @@
 # PetController Class
 
-This class is a controller that handles requests related to pets in the Pet Clinic application.
+This class serves as a controller for handling pet-related operations in the Pet Clinic application.
 
 ## Methods
 
-### `showPetList()`
+### getAllPets
 
-This method handles GET requests to display a list of pets for a specific owner.
+This method retrieves all pets belonging to a specific owner.
 
-- **HTTP Method:** GET
-- **Request Mapping:** `/owners/{ownerId}/pets`
-- **Returns:** A `ModelAndView` object containing the view name `pets/petList`
+#### Parameters
+- `ownerId` (int): The ID of the owner whose pets are to be retrieved.
 
-### `initCreationForm()`
+#### Returns
+- `List<Pet>`: A list of pets belonging to the specified owner.
 
-This method handles GET requests to display a form for adding a new pet to an owner.
+```java
+public List<Pet> getAllPets(int ownerId) {
+    // Method implementation
+}
+```
 
-- **HTTP Method:** GET
-- **Request Mapping:** `/owners/{ownerId}/pets/new`
-- **Returns:** A `ModelAndView` object containing the view name `pets/createOrUpdatePetForm`
+### addNewPet
 
-### `processCreationForm()`
+This method adds a new pet to the database for a specific owner.
 
-This method handles POST requests to process the form submission for adding a new pet to an owner.
+#### Parameters
+- `ownerId` (int): The ID of the owner to whom the new pet belongs.
+- `pet` (Pet): The pet object to be added.
 
-- **HTTP Method:** POST
-- **Request Mapping:** `/owners/{ownerId}/pets/new`
-- **Parameters:**
-  - `@Valid`: Indicates that the `Pet` object should be validated
-  - `BindingResult`: Holds the results of the validation and binding
-- **Returns:** A `String` representing the view name to redirect to
+#### Returns
+- `Pet`: The newly added pet object.
 
-### `initUpdateForm()`
+```java
+public Pet addNewPet(int ownerId, Pet pet) {
+    // Method implementation
+}
+```
 
-This method handles GET requests to display a form for updating an existing pet.
+### updatePetDetails
 
-- **HTTP Method:** GET
-- **Request Mapping:** `/owners/{ownerId}/pets/{petId}/edit`
-- **Parameters:**
-  - `@PathVariable("petId") int petId`: The ID of the pet to be updated
-- **Returns:** A `ModelAndView` object containing the view name `pets/createOrUpdatePetForm`
+This method updates the details of an existing pet.
 
-### `processUpdateForm()`
+#### Parameters
+- `petId` (int): The ID of the pet to be updated.
+- `updatedPet` (Pet): The updated pet object with new details.
 
-This method handles POST requests to process the form submission for updating an existing pet.
+#### Returns
+- `Pet`: The updated pet object.
 
-- **HTTP Method:** POST
-- **Request Mapping:** `/owners/{ownerId}/pets/{petId}/edit`
-- **Parameters:**
-  - `@Valid`: Indicates that the `Pet` object should be validated
-  - `BindingResult`: Holds the results of the validation and binding
-- **Returns:** A `String` representing the view name to redirect to
+```java
+public Pet updatePetDetails(int petId, Pet updatedPet) {
+    // Method implementation
+}
+```
 
-### `showPet()`
+### deletePet
 
-This method handles GET requests to display details of a specific pet.
+This method deletes a pet from the database.
 
-- **HTTP Method:** GET
-- **Request Mapping:** `/owners/{ownerId}/pets/{petId}`
-- **Parameters:**
-  - `@PathVariable("petId") int petId`: The ID of the pet to display
-- **Returns:** A `ModelAndView` object containing the view name `pets/petDetails`
+#### Parameters
+- `petId` (int): The ID of the pet to be deleted.
 
-### `populatePetTypes()`
-
-This method populates the model with a list of pet types for use in forms.
-
-- **Returns:** A `Collection<String>` containing the pet types
-
-### `findOwner()`
-
-This method finds the owner with the given ID.
-
-- **Parameters:**
-  - `@PathVariable("ownerId") int ownerId`: The ID of the owner to find
-- **Returns:** An `Owner` object representing the owner with the given ID
-
-### `initBinder()`
-
-This method customizes data binding for web data.
-
-- **Parameters:**
-  - `WebDataBinder dataBinder`: The data binder to customize
-
-## Dependencies
-
-- `Pet`: Represents a pet in the Pet Clinic application
-- `Owner`: Represents an owner in the Pet Clinic application
-- `ModelAndView`: Represents a model and view object in Spring Framework
-- `BindingResult`: Holds the results of the validation and binding
-- `Collection<String>`: Represents a collection of strings
-
-## Usage
-
-This class is used to handle requests related to pets in the Pet Clinic application.
+```java
+public void deletePet(int petId) {
+    // Method implementation
+}
+```
