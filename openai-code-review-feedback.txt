@@ -1,34 +1,8 @@
 {
-  "id": "chatcmpl-AU4o9CAHRPM7zeusarv4FBTErIFtL",
-  "object": "chat.completion",
-  "created": 1731731685,
-  "model": "gpt-3.5-turbo-0125",
-  "choices": [
-    {
-      "index": 0,
-      "message": {
-        "role": "assistant",
-        "content": "It seems like you are trying to read the contents of a Java file using a shell command within a JavaScript context. This is not a valid way to review code. \n\nTo properly review the code for style, best practices, and optimizations, you should copy and paste the content of the `PetController.java` file directly into the question. \n\nOnce you provide the actual code, I'll be happy to review it for you.",
-        "refusal": null
-      },
-      "logprobs": null,
-      "finish_reason": "stop"
+    "error": {
+        "message": "We could not parse the JSON body of your request. (HINT: This likely means you aren't using your HTTP library correctly. The OpenAI API expects a JSON payload, but what was sent was not valid JSON. If you have trouble figuring out how to fix this, please contact us through our help center at help.openai.com.)",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": null
     }
-  ],
-  "usage": {
-    "prompt_tokens": 52,
-    "completion_tokens": 86,
-    "total_tokens": 138,
-    "prompt_tokens_details": {
-      "cached_tokens": 0,
-      "audio_tokens": 0
-    },
-    "completion_tokens_details": {
-      "reasoning_tokens": 0,
-      "audio_tokens": 0,
-      "accepted_prediction_tokens": 0,
-      "rejected_prediction_tokens": 0
-    }
-  },
-  "system_fingerprint": null
 }
