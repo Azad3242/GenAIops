@@ -1,76 +1,119 @@
-# PetController Class
+# PetController.java
 
-This class is a controller responsible for handling requests related to pets in a pet clinic application.
+This file contains the `PetController` class, which is responsible for handling HTTP requests related to pets in a pet clinic application.
 
-## Methods
+## Class `PetController`
 
-### getAllPets
+### Constructors
 
-```java
-/**
- * Retrieves all pets for a specific owner.
- * @param ownerId The ID of the owner whose pets are to be retrieved.
- * @return A list of pets belonging to the specified owner.
- */
-@GetMapping("/owners/{ownerId}/pets")
-public List<Pet> getAllPets(@PathVariable int ownerId) {
-    // Method implementation
-}
-```
+- `PetController(PetRepository petRepository, OwnerRepository ownerRepository)`
 
-### getPetDetails
+    Constructor for the `PetController` class that initializes the `PetRepository` and `OwnerRepository`.
 
-```java
-/**
- * Retrieves details of a specific pet.
- * @param petId The ID of the pet whose details are to be retrieved.
- * @return Details of the specified pet.
- */
-@GetMapping("/pets/{petId}")
-public Pet getPetDetails(@PathVariable int petId) {
-    // Method implementation
-}
-```
+### Methods
 
-### addNewPet
+- `initCreationForm(Model model, Owner owner)`
 
-```java
-/**
- * Adds a new pet for a specific owner.
- * @param ownerId The ID of the owner for whom the pet is being added.
- * @param pet The details of the new pet to be added.
- * @return The added pet.
- */
-@PostMapping("/owners/{ownerId}/pets")
-public Pet addNewPet(@PathVariable int ownerId, @RequestBody Pet pet) {
-    // Method implementation
-}
-```
+    This method initializes the creation form for a new pet and adds it to the model.
 
-### updatePetDetails
+    ```java
+    public String initCreationForm(Model model, Owner owner) {
+        // Method implementation
+    }
+    ```
 
-```java
-/**
- * Updates details of a specific pet.
- * @param petId The ID of the pet whose details are to be updated.
- * @param updatedPet The new details for the pet.
- * @return The updated pet details.
- */
-@PutMapping("/pets/{petId}")
-public Pet updatePetDetails(@PathVariable int petId, @RequestBody Pet updatedPet) {
-    // Method implementation
-}
-```
+- `processCreationForm(@Valid Pet pet, BindingResult result, Model model, Owner owner)`
 
-### deletePet
+    Processes the form submission for creating a new pet, performs validation, and adds the pet to the owner.
 
-```java
-/**
- * Deletes a specific pet.
- * @param petId The ID of the pet to be deleted.
- */
-@DeleteMapping("/pets/{petId}")
-public void deletePet(@PathVariable int petId) {
-    // Method implementation
-}
-```
+    ```java
+    public String processCreationForm(@Valid Pet pet, BindingResult result, Model model, Owner owner) {
+        // Method implementation
+    }
+    ```
+
+- `initUpdateForm(int petId, Model model)`
+
+    Initializes the update form for an existing pet with the given `petId` and adds it to the model.
+
+    ```java
+    public String initUpdateForm(int petId, Model model) {
+        // Method implementation
+    }
+    ```
+
+- `processUpdateForm(@Valid Pet pet, BindingResult result, Owner owner, Model model)`
+
+    Processes the form submission for updating an existing pet, performs validation, and updates the pet details.
+
+    ```java
+    public String processUpdateForm(@Valid Pet pet, BindingResult result, Owner owner, Model model) {
+        // Method implementation
+    }
+    ```
+
+- `findOwner(@PathVariable("ownerId") int ownerId)`
+
+    Finds the owner with the specified `ownerId`.
+
+    ```java
+    public Owner findOwner(@PathVariable("ownerId") int ownerId) {
+        // Method implementation
+    }
+    ```
+
+- `findPet(@PathVariable("petId") int petId)`
+
+    Finds the pet with the specified `petId`.
+
+    ```java
+    public Pet findPet(@PathVariable("petId") int petId) {
+        // Method implementation
+    }
+    ```
+
+- `setAllowedFields(WebDataBinder dataBinder)`
+
+    Sets the allowed fields for data binding.
+
+    ```java
+    @InitBinder
+    public void setAllowedFields(WebDataBinder dataBinder) {
+        // Method implementation
+    }
+    ```
+
+- `populatePetTypes()`
+
+    Populates the available pet types.
+
+    ```java
+    @ModelAttribute("types")
+    public Collection<PetType> populatePetTypes() {
+        // Method implementation
+    }
+    ```
+
+- `populateOwners()`
+
+    Populates the available owners.
+
+    ```java
+    @ModelAttribute("owners")
+    public Collection<Owner> populateOwners() {
+        // Method implementation
+    }
+    ```
+
+- `initBinder(WebDataBinder dataBinder)`
+
+    Initializes the data binder for web requests.
+
+    ```java
+    @InitBinder
+    public void initBinder(WebDataBinder dataBinder) {
+        // Method implementation
+    }
+    ```
+
+This class provides functionality to manage pets in the pet clinic application, including creating, updating, and retrieving pet information.
